@@ -34,53 +34,52 @@ serve(async (req) => {
       message,
     });
 
-    // Send email via Resend
+    // Send email via Resend (best-effort — submission is already saved)
     const resendKey = Deno.env.get("RESEND_API_KEY");
-    if (!resendKey) {
-      return new Response(
-        JSON.stringify({ error: "Email service not configured." }),
-        { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
-      );
-    }
+    let emailSent = false;
 
-    const emailRes = await fetch("https://api.resend.com/emails", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${resendKey}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        from: "KoreIQ Contact Form <onboarding@resend.dev>",
-        to: ["nalin@koreiq.com"],
-        subject: `New Contact: ${name} — ${organization || "No Organization"}`,
-        html: `
-          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
-            <h2 style="color: #1a73e8;">New Contact Form Submission</h2>
-            <hr style="border: 1px solid #e0e0e0;" />
-            <p><strong>Name:</strong> ${name}</p>
-            <p><strong>Email:</strong> ${email}</p>
-            <p><strong>Organization:</strong> ${organization || "Not provided"}</p>
-            <hr style="border: 1px solid #e0e0e0;" />
-            <h3>Message:</h3>
-            <p style="white-space: pre-wrap;">${message}</p>
-            <hr style="border: 1px solid #e0e0e0;" />
-            <p style="color: #888; font-size: 12px;">Sent from the KoreIQ website contact form.</p>
-          </div>
-        `,
-      }),
-    });
+    if (resendKey) {
+      try {
+        const emailRes = await fetch("https://api.resend.com/emails", {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${resendKey}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            from: "KoreIQ Contact Form <onboarding@resend.dev>",
+            to: ["energyelpro50@gmail.com"],
+            subject: `New Contact: ${name} — ${organization || "No Organization"}`,
+            html: `
+              <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
+                <h2 style="color: #1a73e8;">New Contact Form Submission</h2>
+                <hr style="border: 1px solid #e0e0e0;" />
+                <p><strong>Name:</strong> ${name}</p>
+                <p><strong>Email:</strong> ${email}</p>
+                <p><strong>Organization:</strong> ${organization || "Not provided"}</p>
+                <hr style="border: 1px solid #e0e0e0;" />
+                <h3>Message:</h3>
+                <p style="white-space: pre-wrap;">${message}</p>
+                <hr style="border: 1px solid #e0e0e0;" />
+                <p style="color: #888; font-size: 12px;">Sent from the KoreIQ website contact form.</p>
+              </div>
+            `,
+          }),
+        });
 
-    if (!emailRes.ok) {
-      const errText = await emailRes.text();
-      console.error("Resend error:", errText);
-      return new Response(
-        JSON.stringify({ error: "Failed to send email", details: errText }),
-        { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
-      );
+        if (emailRes.ok) {
+          emailSent = true;
+        } else {
+          const errText = await emailRes.text();
+          console.error("Resend error (non-fatal):", errText);
+        }
+      } catch (emailErr) {
+        console.error("Email send failed (non-fatal):", emailErr);
+      }
     }
 
     return new Response(
-      JSON.stringify({ success: true }),
+      JSON.stringify({ success: true, emailSent }),
       { status: 200, headers: { ...corsHeaders, "Content-Type": "application/json" } }
     );
   } catch (error) {
