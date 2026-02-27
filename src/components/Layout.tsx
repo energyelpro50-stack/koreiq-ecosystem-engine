@@ -112,9 +112,15 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 </div>
                 <span className="font-display text-lg font-bold">KoreIQ</span>
               </div>
-              <p className="text-sm text-muted-foreground leading-relaxed">
+              <p className="text-sm text-muted-foreground leading-relaxed mb-1">
                 Engineering Intelligence for Real-World Impact.
               </p>
+              <p className="text-xs text-accent">A DPIIT Recognised Startup</p>
+              <div className="mt-3 space-y-1 text-xs text-muted-foreground">
+                <p>Bangalore, India</p>
+                <p><a href="mailto:admin@koreiq.com" className="hover:text-primary transition-colors">admin@koreiq.com</a></p>
+                <p><a href="tel:+918431772325" className="hover:text-primary transition-colors">+91 8431772325</a></p>
+              </div>
             </div>
             <div>
               <h4 className="font-display font-semibold text-sm mb-4">Solutions</h4>

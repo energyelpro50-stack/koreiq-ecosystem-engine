@@ -4,6 +4,7 @@ import { Bus, Armchair, Siren, CloudLightning, Lightbulb, LayoutDashboard, Users
 import { Button } from "@/components/ui/button";
 import HeroSection from "@/components/HeroSection";
 import SectionWrapper from "@/components/SectionWrapper";
+import communityImage from "@/assets/community-people.jpg";
 
 const solutions = [
   {
@@ -78,6 +79,7 @@ export default function Solutions() {
         headline="Intelligent Products Designed Around Real Needs"
         subtext="Every solution we build starts with a real problem faced by real communities. Our products integrate seamlessly into urban infrastructure, making cities safer, smarter, and more sustainable."
         primaryCta={{ label: "Explore All Solutions", to: "#solutions-grid" }}
+        image={communityImage}
       />
 
       <SectionWrapper id="solutions-grid">
