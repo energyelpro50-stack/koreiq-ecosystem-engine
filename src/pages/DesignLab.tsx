@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import HeroSection from "@/components/HeroSection";
 import SectionWrapper from "@/components/SectionWrapper";
-import designLabImage from "@/assets/design-lab.jpg";
+import controlRoom from "@/assets/control-room.jpg";
 
 const focusAreas = [
   { icon: Layout, title: "Smart Infrastructure Architecture", desc: "End-to-end system design for intelligent urban infrastructure." },
@@ -22,7 +22,7 @@ export default function DesignLab() {
         headline="KoreIQ Design Lab – Where Intelligent Infrastructure Is Engineered"
         subtext="The KoreIQ Design Lab develops next-generation smart infrastructure solutions integrating AI algorithms, ML prediction engines, IoT sensor networks, edge devices, cloud command centers, and human-centric design."
         primaryCta={{ label: "Collaborate With Our Design Lab", to: "/contact" }}
-        image={designLabImage}
+        image={controlRoom}
       />
 
       <SectionWrapper>

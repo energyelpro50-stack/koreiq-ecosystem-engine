@@ -4,6 +4,7 @@ import { useEffect, useState, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import HeroSection from "@/components/HeroSection";
 import SectionWrapper from "@/components/SectionWrapper";
+import cityTraffic from "@/assets/city-traffic.jpg";
 
 const metrics = [
   { value: 10000, suffix: "+", label: "Infrastructure Nodes Connected" },
@@ -64,6 +65,7 @@ export default function Impact() {
         headline="Measured Intelligence. Meaningful Impact."
         subtext="Every system we deploy creates measurable improvements in safety, efficiency, and sustainability. Here's the impact so far."
         primaryCta={{ label: "Create Impact With KoreIQ", to: "/contact" }}
+        image={cityTraffic}
       />
 
       <SectionWrapper>
