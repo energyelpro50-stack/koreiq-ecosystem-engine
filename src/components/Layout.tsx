@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import koreiqLogo from "@/assets/koreiq-logo.png";
 
 const navLinks = [
   { label: "Home", path: "/" },
@@ -25,12 +26,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <nav className="fixed top-0 left-0 right-0 z-50 border-b border-border/50 bg-background/80 backdrop-blur-xl">
         <div className="container mx-auto flex h-16 items-center justify-between px-4 lg:px-8">
           <Link to="/" className="flex items-center gap-2">
-            <div className="h-8 w-8 rounded-lg bg-primary flex items-center justify-center">
-              <span className="font-display text-sm font-bold text-primary-foreground">K</span>
-            </div>
-            <span className="font-display text-lg font-bold tracking-tight">
-              KoreIQ
-            </span>
+            <img src={koreiqLogo} alt="KoreIQ logo" className="h-9 w-auto" />
           </Link>
 
           {/* Desktop Nav */}
@@ -106,11 +102,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <div className="container mx-auto px-4 lg:px-8 py-16">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div className="md:col-span-1">
-              <div className="flex items-center gap-2 mb-4">
-                <div className="h-8 w-8 rounded-lg bg-primary flex items-center justify-center">
-                  <span className="font-display text-sm font-bold text-primary-foreground">K</span>
-                </div>
-                <span className="font-display text-lg font-bold">KoreIQ</span>
+              <div className="mb-4">
+                <img src={koreiqLogo} alt="KoreIQ logo" className="h-10 w-auto" />
               </div>
               <p className="text-sm text-muted-foreground leading-relaxed mb-1">
                 Engineering Intelligence for Real-World Impact.
