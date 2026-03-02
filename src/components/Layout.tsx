@@ -26,7 +26,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <nav className="fixed top-0 left-0 right-0 z-50 border-b border-border/50 bg-background/80 backdrop-blur-xl">
         <div className="container mx-auto flex h-16 items-center justify-between px-4 lg:px-8">
           <Link to="/" className="flex items-center gap-2">
-            <img src={koreiqLogo} alt="KoreIQ logo" className="h-9 w-auto" />
+            <img src={koreiqLogo} alt="KoreIQ logo" className="h-9 w-auto bg-white/90 rounded-md px-2 py-1" />
           </Link>
 
           {/* Desktop Nav */}
@@ -103,7 +103,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div className="md:col-span-1">
               <div className="mb-4">
-                <img src={koreiqLogo} alt="KoreIQ logo" className="h-10 w-auto" />
+                <img src={koreiqLogo} alt="KoreIQ logo" className="h-10 w-auto bg-white/90 rounded-md px-2 py-1" />
               </div>
               <p className="text-sm text-muted-foreground leading-relaxed mb-1">
                 Engineering Intelligence for Real-World Impact.
