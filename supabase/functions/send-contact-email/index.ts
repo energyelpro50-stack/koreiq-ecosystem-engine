@@ -39,16 +39,18 @@ serve(async (req) => {
     let emailSent = false;
 
     if (resendKey) {
+      // 1. Send notification to admin
       try {
-        const emailRes = await fetch("https://api.resend.com/emails", {
+        const adminRes = await fetch("https://api.resend.com/emails", {
           method: "POST",
           headers: {
             Authorization: `Bearer ${resendKey}`,
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            from: "KoreIQ Contact Form <onboarding@resend.dev>",
-            to: ["energyelpro50@gmail.com"],
+            from: "KoreIQ Contact Form <contact@koreiq.com>",
+            to: ["connect@koreiq.com"],
+            reply_to: email,
             subject: `New Contact: ${name} — ${organization || "No Organization"}`,
             html: `
               <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
@@ -66,15 +68,36 @@ serve(async (req) => {
             `,
           }),
         });
+        if (adminRes.ok) emailSent = true;
+        else console.error("Admin email error (non-fatal):", await adminRes.text());
+      } catch (e) {
+        console.error("Admin email failed (non-fatal):", e);
+      }
 
-        if (emailRes.ok) {
-          emailSent = true;
-        } else {
-          const errText = await emailRes.text();
-          console.error("Resend error (non-fatal):", errText);
-        }
-      } catch (emailErr) {
-        console.error("Email send failed (non-fatal):", emailErr);
+      // 2. Send auto-reply to the user
+      try {
+        await fetch("https://api.resend.com/emails", {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${resendKey}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            from: "KoreIQ <contact@koreiq.com>",
+            to: [email],
+            subject: "We received your message — KoreIQ",
+            html: `
+              <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
+                <h2 style="color: #1a73e8;">Thank you for reaching out, ${name}!</h2>
+                <p>We've received your message and our team will get back to you shortly.</p>
+                <hr style="border: 1px solid #e0e0e0;" />
+                <p style="color: #888; font-size: 12px;">This is an automated reply from KoreIQ Technologies Pvt. Ltd.</p>
+              </div>
+            `,
+          }),
+        });
+      } catch (e) {
+        console.error("Auto-reply failed (non-fatal):", e);
       }
     }
 
