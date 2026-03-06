@@ -49,7 +49,7 @@ serve(async (req) => {
           },
           body: JSON.stringify({
             from: "KoreIQ Contact Form <contact@koreiq.com>",
-            to: ["connect@koreiq.com"],
+            to: ["nalin@koreiq.com"],
             reply_to: email,
             subject: `New Contact: ${name} — ${organization || "No Organization"}`,
             html: `
