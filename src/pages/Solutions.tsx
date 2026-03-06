@@ -5,6 +5,12 @@ import { Button } from "@/components/ui/button";
 import HeroSection from "@/components/HeroSection";
 import SectionWrapper from "@/components/SectionWrapper";
 import communityImage from "@/assets/community-people.jpg";
+import smartBusStop from "@/assets/smart-bus-stop.png";
+import smartBench from "@/assets/smart-bench.jpg";
+import emergencyPole from "@/assets/emergency-pole.png";
+import disasterManagement from "@/assets/disaster-management.jpg";
+import smartPole from "@/assets/smart-pole.jpg";
+import smartCityDashboard from "@/assets/smart-city-dashboard.png";
 
 const solutions = [
   {
@@ -13,6 +19,7 @@ const solutions = [
     features: ["Real-time passenger information", "Surveillance integration", "Energy-efficient systems", "Centralized monitoring"],
     impact: "Safer public mobility.",
     cta: "Build Smart Transit Systems",
+    image: smartBusStop,
   },
   {
     icon: Armchair,
@@ -20,6 +27,7 @@ const solutions = [
     features: ["Solar-powered", "Charging points", "Environmental sensors", "Data connectivity"],
     impact: "Smart public spaces.",
     cta: "Create Intelligent Public Spaces",
+    image: smartBench,
   },
   {
     icon: Siren,
@@ -27,6 +35,7 @@ const solutions = [
     features: ["Emergency call systems", "Real-time alerts", "Command center linkage", "Audio-visual signaling"],
     impact: "Faster response. Saved lives.",
     cta: "Enhance Public Safety",
+    image: emergencyPole,
   },
   {
     icon: CloudLightning,
@@ -34,6 +43,7 @@ const solutions = [
     features: ["Early warning systems", "Environmental monitoring", "Predictive risk analytics", "Crisis dashboards"],
     impact: "Prepared cities save lives.",
     cta: "Strengthen Disaster Preparedness",
+    image: disasterManagement,
   },
   {
     icon: Lightbulb,
@@ -41,6 +51,7 @@ const solutions = [
     features: ["Integrated lighting", "CCTV integration", "Environmental sensors", "EV charging & public Wi-Fi"],
     impact: "Multi-utility intelligent urban infrastructure.",
     cta: "Deploy Smart Urban Infrastructure",
+    image: smartPole,
   },
   {
     icon: LayoutDashboard,
@@ -48,6 +59,7 @@ const solutions = [
     features: ["Unified command & control", "Real-time data visualization", "Traffic & infrastructure integration", "AI-driven alerts"],
     impact: "Intelligent governance.",
     cta: "Enable Smart Governance",
+    image: smartCityDashboard,
   },
   {
     icon: Users,
@@ -94,13 +106,34 @@ export default function Solutions() {
               className="glass-card p-8 md:p-10 hover:glow-border transition-all duration-300"
             >
               <div className="flex flex-col lg:flex-row gap-8 items-start">
-                <div className="flex-shrink-0">
-                  <div className="h-14 w-14 rounded-xl bg-primary/10 flex items-center justify-center">
-                    <sol.icon className="h-7 w-7 text-primary" />
+                {sol.image && (
+                  <div className="flex-shrink-0 w-full lg:w-72 xl:w-80">
+                    <div className="rounded-xl overflow-hidden border border-border/50">
+                      <img
+                        src={sol.image}
+                        alt={sol.title}
+                        className="w-full h-48 lg:h-52 object-cover"
+                        loading="lazy"
+                      />
+                    </div>
                   </div>
-                </div>
+                )}
+                {!sol.image && (
+                  <div className="flex-shrink-0">
+                    <div className="h-14 w-14 rounded-xl bg-primary/10 flex items-center justify-center">
+                      <sol.icon className="h-7 w-7 text-primary" />
+                    </div>
+                  </div>
+                )}
                 <div className="flex-1">
-                  <h3 className="font-display font-bold text-xl md:text-2xl mb-3">{sol.title}</h3>
+                  <div className="flex items-center gap-3 mb-3">
+                    {sol.image && (
+                      <div className="h-10 w-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+                        <sol.icon className="h-5 w-5 text-primary" />
+                      </div>
+                    )}
+                    <h3 className="font-display font-bold text-xl md:text-2xl">{sol.title}</h3>
+                  </div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-4">
                     {sol.features.map((f) => (
                       <div key={f} className="flex items-center gap-2 text-sm text-muted-foreground">
