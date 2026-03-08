@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Switch } from "@/components/ui/switch";
+import RichTextEditor from "@/components/RichTextEditor";
 import { toast } from "@/hooks/use-toast";
 import {
   Dialog,
@@ -295,13 +296,10 @@ export default function AdminBlog() {
               />
             </div>
             <div className="space-y-2">
-              <Label>Content (HTML)</Label>
-              <Textarea
-                value={editingPost.content}
-                onChange={(e) => setEditingPost({ ...editingPost, content: e.target.value })}
-                placeholder="<p>Your blog post content...</p>"
-                rows={12}
-                className="font-mono text-sm"
+              <Label>Content</Label>
+              <RichTextEditor
+                content={editingPost.content}
+                onChange={(html) => setEditingPost({ ...editingPost, content: html })}
               />
             </div>
             <div className="flex items-center gap-3">
