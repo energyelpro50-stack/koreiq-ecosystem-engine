@@ -14,6 +14,8 @@ import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
+import AdminLogin from "./pages/AdminLogin";
+import AdminBlog from "./pages/AdminBlog";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -23,23 +25,29 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <BrowserRouter>
-        <Layout>
+        <BrowserRouter>
           <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/design-lab" element={<DesignLab />} />
-            <Route path="/solutions" element={<Solutions />} />
-            <Route path="/technology" element={<Technology />} />
-            <Route path="/sustainability" element={<Sustainability />} />
-            <Route path="/impact" element={<Impact />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/blog" element={<Blog />} />
-            <Route path="/blog/:slug" element={<BlogPost />} />
-            <Route path="*" element={<NotFound />} />
+            <Route path="/admin/login" element={<AdminLogin />} />
+            <Route path="/admin" element={<AdminBlog />} />
+            <Route path="*" element={
+              <Layout>
+                <Routes>
+                  <Route path="/" element={<Index />} />
+                  <Route path="/design-lab" element={<DesignLab />} />
+                  <Route path="/solutions" element={<Solutions />} />
+                  <Route path="/technology" element={<Technology />} />
+                  <Route path="/sustainability" element={<Sustainability />} />
+                  <Route path="/impact" element={<Impact />} />
+                  <Route path="/about" element={<About />} />
+                  <Route path="/contact" element={<Contact />} />
+                  <Route path="/blog" element={<Blog />} />
+                  <Route path="/blog/:slug" element={<BlogPost />} />
+                  <Route path="*" element={<NotFound />} />
+                </Routes>
+              </Layout>
+            } />
           </Routes>
-        </Layout>
-      </BrowserRouter>
+        </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
 );
