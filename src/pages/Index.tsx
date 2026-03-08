@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import HeroSection from "@/components/HeroSection";
 import SectionWrapper from "@/components/SectionWrapper";
 import heroImage from "@/assets/hero-city.jpg";
+import BlogPreview from "@/components/BlogPreview";
 
 const problems = [
   { icon: Zap, title: "Energy Waste", desc: "Billions lost to inefficient power distribution and unoptimized consumption." },
