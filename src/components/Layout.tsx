@@ -13,6 +13,7 @@ const navLinks = [
   { label: "Sustainability", path: "/sustainability" },
   { label: "Impact", path: "/impact" },
   { label: "About", path: "/about" },
+  { label: "Blog", path: "/blog" },
   { label: "Contact", path: "/contact" },
 ];
 
