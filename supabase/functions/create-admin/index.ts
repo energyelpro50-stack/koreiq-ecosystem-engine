@@ -25,18 +25,36 @@ Deno.serve(async (req) => {
       Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!
     );
 
-    // Create user
-    const { data: userData, error: userError } = await supabaseAdmin.auth.admin.createUser({
-      email,
-      password,
-      email_confirm: true,
-    });
+    // Check if user exists
+    const { data: users } = await supabaseAdmin.auth.admin.listUsers();
+    const existingUser = users?.users?.find((u: any) => u.email === email);
 
-    if (userError) {
-      return new Response(JSON.stringify({ error: userError.message }), {
-        status: 400,
-        headers: { ...corsHeaders, "Content-Type": "application/json" },
+    let userId: string;
+
+    if (existingUser) {
+      // Update password
+      const { error: updateError } = await supabaseAdmin.auth.admin.updateUserById(existingUser.id, { password });
+      if (updateError) {
+        return new Response(JSON.stringify({ error: updateError.message }), {
+          status: 400,
+          headers: { ...corsHeaders, "Content-Type": "application/json" },
+        });
+      }
+      userId = existingUser.id;
+    } else {
+      // Create user
+      const { data: userData, error: userError } = await supabaseAdmin.auth.admin.createUser({
+        email,
+        password,
+        email_confirm: true,
       });
+      if (userError) {
+        return new Response(JSON.stringify({ error: userError.message }), {
+          status: 400,
+          headers: { ...corsHeaders, "Content-Type": "application/json" },
+        });
+      }
+      userId = userData.user.id;
     }
 
     // Assign admin role
