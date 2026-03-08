@@ -4,6 +4,7 @@ import { Radio, Wifi, Brain, Cpu, Zap, RotateCw } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import HeroSection from "@/components/HeroSection";
 import SectionWrapper from "@/components/SectionWrapper";
+import PageSEO from "@/components/PageSEO";
 import techImage from "@/assets/technology-flow.jpg";
 
 const steps = [
@@ -18,11 +19,18 @@ const steps = [
 export default function Technology() {
   return (
     <>
+      <PageSEO
+        title="AI IoT Technology Platform | KoreIQ Technologies"
+        description="Discover KoreIQ's AI and IoT technology pipeline – from sensor data capture to intelligent automation for smart city and infrastructure systems."
+        canonical="https://www.koreiq.com/technology"
+      />
+
       <HeroSection
         headline="From Sensors to Intelligence to Action"
         subtext="Data is not power. Actionable intelligence is. Our technology pipeline transforms raw data into decisions that protect people and optimize infrastructure."
         primaryCta={{ label: "Explore Our Technology Architecture", to: "/contact" }}
         image={techImage}
+        imageAlt="AI IoT technology pipeline from sensor data to intelligent automation"
       />
 
       <SectionWrapper>

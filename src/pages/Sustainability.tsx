@@ -4,6 +4,7 @@ import { Leaf, Droplets, Zap, Building, Recycle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import HeroSection from "@/components/HeroSection";
 import SectionWrapper from "@/components/SectionWrapper";
+import PageSEO from "@/components/PageSEO";
 import sustainImage from "@/assets/sustainability.jpg";
 
 const pillars = [
@@ -17,11 +18,18 @@ const pillars = [
 export default function Sustainability() {
   return (
     <>
+      <PageSEO
+        title="Sustainability & Green Infrastructure | KoreIQ Technologies"
+        description="KoreIQ engineers sustainable smart infrastructure with AI-optimized energy, water conservation, emission reduction and circular economy principles."
+        canonical="https://www.koreiq.com/sustainability"
+      />
+
       <HeroSection
         headline="Building Intelligence for a Circular Future"
         subtext="Sustainability isn't an add-on — it's engineered into the core of every KoreIQ system. We enable governments and enterprises to build infrastructure that serves both people and the planet."
         primaryCta={{ label: "Build Sustainable Systems With Us", to: "/contact" }}
         image={sustainImage}
+        imageAlt="Sustainable smart infrastructure with green energy and IoT monitoring"
       />
 
       <SectionWrapper>

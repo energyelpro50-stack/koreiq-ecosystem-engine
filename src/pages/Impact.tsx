@@ -4,6 +4,7 @@ import { useEffect, useState, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import HeroSection from "@/components/HeroSection";
 import SectionWrapper from "@/components/SectionWrapper";
+import PageSEO from "@/components/PageSEO";
 import cityTraffic from "@/assets/city-traffic.jpg";
 
 const metrics = [
@@ -61,11 +62,18 @@ function AnimatedCounter({ value, suffix }: { value: number; suffix: string }) {
 export default function Impact() {
   return (
     <>
+      <PageSEO
+        title="Impact & Results – Smart Infrastructure | KoreIQ Technologies"
+        description="See measurable results from KoreIQ's AI and IoT smart infrastructure deployments – energy savings, water conservation, emergency response and more."
+        canonical="https://www.koreiq.com/impact"
+      />
+
       <HeroSection
         headline="Measured Intelligence. Meaningful Impact."
         subtext="Every system we deploy creates measurable improvements in safety, efficiency, and sustainability. Here's the impact so far."
         primaryCta={{ label: "Create Impact With KoreIQ", to: "/contact" }}
         image={cityTraffic}
+        imageAlt="Smart city traffic infrastructure with AI powered monitoring systems"
       />
 
       <SectionWrapper>

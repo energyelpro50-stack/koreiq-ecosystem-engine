@@ -4,6 +4,7 @@ import { AlertTriangle, Droplets, Zap, Shield, Clock, Building } from "lucide-re
 import { Button } from "@/components/ui/button";
 import HeroSection from "@/components/HeroSection";
 import SectionWrapper from "@/components/SectionWrapper";
+import PageSEO from "@/components/PageSEO";
 import heroImage from "@/assets/hero-city.jpg";
 import BlogPreview from "@/components/BlogPreview";
 
@@ -19,12 +20,19 @@ const problems = [
 export default function Index() {
   return (
     <>
+      <PageSEO
+        title="KoreIQ Technologies | AI, IoT & Smart Infrastructure Solutions for Smart Cities"
+        description="KoreIQ Technologies builds AI, IoT and cloud powered smart infrastructure solutions including smart bus stops, smart poles, energy monitoring systems, disaster management platforms and smart city dashboards."
+        canonical="https://www.koreiq.com/"
+      />
+
       <HeroSection
-        headline="Intelligence That Protects Cities. Optimizes Infrastructure. Empowers Communities."
+        headline="AI Powered Smart Infrastructure for Cities, Campuses and Industries"
         subtext="AI-powered connected ecosystems transforming energy, water, public infrastructure, and urban safety."
         primaryCta={{ label: "Solve a Challenge With Us", to: "/contact" }}
         secondaryCta={{ label: "Explore Our Solutions", to: "/solutions" }}
         image={heroImage}
+        imageAlt="AI powered smart city infrastructure with connected IoT systems"
       />
 
       {/* Emotional Anchor */}
@@ -78,6 +86,40 @@ export default function Index() {
           <Button size="lg" asChild>
             <Link to="/contact">Talk to Our Experts</Link>
           </Button>
+        </div>
+      </SectionWrapper>
+
+      {/* Solutions Internal Links */}
+      <div className="section-divider" />
+      <SectionWrapper>
+        <div className="text-center mb-10">
+          <h2 className="text-3xl md:text-4xl font-display font-bold mb-4">
+            Our <span className="gradient-text">Smart Infrastructure Solutions</span>
+          </h2>
+        </div>
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          {[
+            { label: "Smart Bus Stops", to: "/solutions" },
+            { label: "Smart Benches", to: "/solutions" },
+            { label: "Smart Poles", to: "/solutions" },
+            { label: "Emergency Response Systems", to: "/solutions" },
+            { label: "Disaster Management Systems", to: "/solutions" },
+            { label: "Energy Monitoring Systems", to: "/solutions" },
+            { label: "Water Monitoring Systems", to: "/solutions" },
+            { label: "Smart City Dashboards", to: "/solutions" },
+            { label: "Design Lab", to: "/design-lab" },
+            { label: "Technology Platform", to: "/technology" },
+            { label: "Sustainability", to: "/sustainability" },
+            { label: "Impact", to: "/impact" },
+          ].map((link) => (
+            <Link
+              key={link.label}
+              to={link.to}
+              className="glass-card p-4 text-center text-sm font-display font-medium hover:text-primary hover:glow-border transition-all duration-300"
+            >
+              {link.label}
+            </Link>
+          ))}
         </div>
       </SectionWrapper>
 
