@@ -8,15 +8,16 @@ interface HeroSectionProps {
   primaryCta?: { label: string; to: string };
   secondaryCta?: { label: string; to: string };
   image?: string;
+  imageAlt?: string;
   overlay?: boolean;
 }
 
-export default function HeroSection({ headline, subtext, primaryCta, secondaryCta, image, overlay = true }: HeroSectionProps) {
+export default function HeroSection({ headline, subtext, primaryCta, secondaryCta, image, imageAlt, overlay = true }: HeroSectionProps) {
   return (
     <section className="relative min-h-[85vh] flex items-center overflow-hidden">
       {image && (
         <div className="absolute inset-0">
-          <img src={image} alt="" className="w-full h-full object-cover" />
+          <img src={image} alt={imageAlt || headline} className="w-full h-full object-cover" />
           {overlay && <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-background/40" />}
         </div>
       )}
