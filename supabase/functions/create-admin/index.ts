@@ -57,10 +57,10 @@ Deno.serve(async (req) => {
       userId = userData.user.id;
     }
 
-    // Assign admin role
+    // Ensure admin role exists
     const { error: roleError } = await supabaseAdmin
       .from("user_roles")
-      .insert({ user_id: userData.user.id, role: "admin" });
+      .upsert({ user_id: userId, role: "admin" }, { onConflict: "user_id,role" });
 
     if (roleError) {
       return new Response(JSON.stringify({ error: roleError.message }), {
@@ -69,7 +69,7 @@ Deno.serve(async (req) => {
       });
     }
 
-    return new Response(JSON.stringify({ success: true, userId: userData.user.id }), {
+    return new Response(JSON.stringify({ success: true, userId }), {
       headers: { ...corsHeaders, "Content-Type": "application/json" },
     });
   } catch (e) {
