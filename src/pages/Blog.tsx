@@ -5,6 +5,7 @@ import { Calendar, User, ArrowRight } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import HeroSection from "@/components/HeroSection";
 import SectionWrapper from "@/components/SectionWrapper";
+import PageSEO from "@/components/PageSEO";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -38,6 +39,12 @@ export default function Blog() {
 
   return (
     <>
+      <PageSEO
+        title="Blog – Smart City & Infrastructure Insights | KoreIQ Technologies"
+        description="Explore KoreIQ's thought leadership on AI smart infrastructure, IoT urban systems, smart bus stops, disaster management, energy monitoring and the future of smart cities."
+        canonical="https://www.koreiq.com/blog"
+      />
+
       <HeroSection
         headline="Insights & Innovation"
         subtext="Explore thought leadership on smart infrastructure, AI-driven urban systems, and the future of connected communities."
@@ -89,8 +96,9 @@ export default function Blog() {
                       <div className="h-48 overflow-hidden">
                         <img
                           src={post.cover_image}
-                          alt={post.title}
+                          alt={`${post.title} – KoreIQ smart infrastructure blog`}
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                          loading="lazy"
                         />
                       </div>
                     )}

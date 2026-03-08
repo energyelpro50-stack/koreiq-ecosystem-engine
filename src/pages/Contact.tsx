@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import HeroSection from "@/components/HeroSection";
 import SectionWrapper from "@/components/SectionWrapper";
+import PageSEO from "@/components/PageSEO";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import engineeringCrew from "@/assets/engineering-crew.jpg";
@@ -48,17 +49,23 @@ export default function Contact() {
 
   return (
     <>
+      <PageSEO
+        title="Contact KoreIQ Technologies | Smart Infrastructure Consultation"
+        description="Contact KoreIQ Technologies for AI, IoT and smart infrastructure consultations. Reach us for smart bus stops, smart poles, energy and water monitoring solutions."
+        canonical="https://www.koreiq.com/contact"
+      />
+
       <HeroSection
         headline="Let's Engineer a Smarter Future Together"
         subtext="Every infrastructure system can become intelligent. Every community deserves safer, smarter environments."
         primaryCta={{ label: "Start a Conversation", to: "#contact-form" }}
         secondaryCta={{ label: "Request a Consultation", to: "#contact-form" }}
         image={engineeringCrew}
+        imageAlt="KoreIQ engineering team working on smart infrastructure solutions"
       />
 
       <SectionWrapper id="contact-form">
         <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-5 gap-8">
-          {/* Contact Info */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -116,7 +123,6 @@ export default function Contact() {
             </div>
           </motion.div>
 
-          {/* Contact Form */}
           <motion.form
             onSubmit={handleSubmit}
             initial={{ opacity: 0, y: 20 }}

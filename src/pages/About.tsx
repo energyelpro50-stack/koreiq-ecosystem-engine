@@ -3,10 +3,17 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import HeroSection from "@/components/HeroSection";
 import SectionWrapper from "@/components/SectionWrapper";
+import PageSEO from "@/components/PageSEO";
 
 export default function About() {
   return (
     <>
+      <PageSEO
+        title="About KoreIQ Technologies | Smart Infrastructure Startup India"
+        description="KoreIQ Technologies is a DPIIT recognised deep-tech startup from Bangalore engineering AI, IoT and cloud powered intelligent infrastructure for smart cities."
+        canonical="https://www.koreiq.com/about"
+      />
+
       <HeroSection
         headline="Technology With Purpose"
         subtext="Founded in 2020, KoreIQ was built to bridge the gap between infrastructure and intelligence. We believe every city, every community, every system can be made smarter — and that intelligence should serve people first."
