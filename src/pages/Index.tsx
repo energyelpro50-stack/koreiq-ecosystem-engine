@@ -81,6 +81,10 @@ export default function Index() {
         </div>
       </SectionWrapper>
 
+      {/* Blog Preview */}
+      <div className="section-divider" />
+      <BlogPreview />
+
       {/* Tech Stack Strip */}
       <div className="section-divider" />
       <SectionWrapper className="text-center">
